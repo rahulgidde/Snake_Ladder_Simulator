@@ -16,10 +16,8 @@ function rollDie()
 	echo $((1 + RANDOM%6))
 }
 
-
 #CHECK FOR OPTION
 checkCase=$((1+RANDOM%3))
-
 case $checkCase in
 	1)
 		position=$(( position + rollDie ))
