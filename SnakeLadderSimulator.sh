@@ -16,20 +16,53 @@ function rollDie()
 	echo $((1 + RANDOM%6))
 }
 
-#CHECK FOR OPTION
-checkCase=$((1+RANDOM%3))
-case $checkCase in
-	1)
-		position=$(( position + rollDie ))
-		echo "Player moves ahead by $rollDie position."
-		;;
-	2)
-		position=$(( position - rollDie ))
-		echo "Player moves behind by $rollDie position."
-		;;
-	3)
-		echo "Player is on same Position."
-		;;
-esac
+function ladder
+{
+	number=$1
+	if [ $(($position+$number)) -le $WIN ]
+	then
+		for (( ladder=1; ladder<=$number; ladder++ ))
+		do
+			((position++))
+			echo $position
+		done
+	fi
+}
+
+function snake
+{
+	number=$1
+	for (( snake=1; snake<=$number; snake++ ))
+	do
+		if [ $position -lt 0 ]
+		then
+			position=0
+			break;
+		else
+			((position--))
+			echo $position
+		fi
+	done
+}
+
+while [[ $position -ne $WIN ]]
+do
+	dieNumber=$(rollDie)
+	checkCase=$((1+RANDOM%3))
+	case $checkCase in
+		1)
+			echo "Ladder : " $dieNumber
+			ladder $dieNumber
+			;;
+		2)
+			echo "Snake : " $dieNumber
+			snake $dieNumber
+			;;
+		3)
+			echo "No Play : 0"
+			;;
+	esac
+done
+
 
 
