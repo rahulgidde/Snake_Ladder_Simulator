@@ -16,7 +16,7 @@ function rollDie()
 	echo $((1 + RANDOM%6))
 }
 
-function ladder
+function ladder()
 {
 	number=$1
 	if [ $(($position+$number)) -le $WIN ]
@@ -29,7 +29,7 @@ function ladder
 	fi
 }
 
-function snake
+function snake()
 {
 	number=$1
 	for (( snake=1; snake<=$number; snake++ ))
