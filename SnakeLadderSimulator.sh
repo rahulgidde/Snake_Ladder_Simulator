@@ -19,11 +19,14 @@ function rollDie()
 function ladder()
 {
 	number=$1
-	for (( ladder=1; ladder<=$number; ladder++ ))
-	do
-		((position++))
-		echo $position
-	done
+	if [ $(($position+$number)) -le $WIN ]
+	then
+		for (( ladder=1; ladder<=$number; ladder++ ))
+		do
+			((position++))
+			echo $position
+		done
+	fi
 }
 
 function snake()
