@@ -9,6 +9,7 @@ WIN=100
 
 #VARIABLE
 position=$START_POSITION
+rollDieCount=0
 
 #ROLL DIE FOR PLAYER
 function rollDie()
@@ -62,7 +63,6 @@ do
 			echo "No Play : 0"
 			;;
 	esac
+	rollDieArray[((rollDieCount++))]=$position
 done
-
-
 
